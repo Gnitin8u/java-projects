@@ -1,0 +1,73 @@
+import java.util.*;
+public class ATMmanagement {
+    public static void main(String[] args) {
+        ATM A1 = new ATM();
+        A1.Checkpin();
+    }
+}
+
+
+class ATM{
+    int PIN=2345;
+    int Balance;
+
+    void Checkpin(){
+        System.out.println("Enter your pin");
+        Scanner sc = new Scanner(System.in);
+        int EnteredPin = sc.nextInt();
+        if(EnteredPin==PIN){
+            menu();
+        }else{
+            System.out.println("Invalid Pin");
+            Checkpin();
+        }
+    }
+    void menu(){
+        System.out.println("Enter your choices ");
+        System.out.println("1. Check A/C balance");
+        System.out.println("2. widraw money");
+        System.out.println("3. Deposit Money");
+        System.out.println("4. Exit");
+        Scanner sc = new Scanner(System.in);
+        int selectNo = sc.nextInt();
+        if(selectNo==1){
+            Checkbalance();
+        }
+        else if(selectNo==2){
+            WidrawMoney();
+        }else if(selectNo==3){
+            DepositMoney();
+        }else if(selectNo==4){
+            return;
+        }else{
+            System.out.println("invalid choice");
+        }
+        
+    }
+    void Checkbalance(){
+        System.out.println("Your Balance is "+ Balance);
+        menu();
+    }
+    void WidrawMoney(){
+        System.out.println("Enter Amount for Widrawal");
+        Scanner sc = new Scanner(System.in);
+        int WidrawAmount = sc.nextInt();
+        if(WidrawAmount>Balance){
+            System.out.println("Insufficient Balance");
+        }else{
+            Balance=Balance-WidrawAmount;
+            System.out.println("Widrawal Successful");
+        }
+        menu();
+    }
+    void DepositMoney(){
+        System.out.println("Enter amount for Deposit");
+        Scanner sc =new Scanner(System.in);
+        int DepositAmount = sc.nextInt();
+        Balance=Balance+DepositAmount;
+        System.out.println("Deposit Successfull");
+        menu();
+    }
+
+
+}
